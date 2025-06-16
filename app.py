@@ -1,5 +1,5 @@
 import nltk
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 from flask import Flask, request, render_template
 from newspaper import Article
