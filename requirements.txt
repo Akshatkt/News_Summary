@@ -4,3 +4,4 @@ textblob
 newspaper3k
 validators
 requests
+gunicorn
