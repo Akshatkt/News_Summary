@@ -1,3 +1,6 @@
+import nltk
+nltk.download('punkt')
+
 from flask import Flask, request, render_template
 from newspaper import Article
 from textblob import TextBlob
