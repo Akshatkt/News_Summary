@@ -5,3 +5,4 @@ newspaper3k
 validators
 requests
 gunicorn
+lxml_html_clean
