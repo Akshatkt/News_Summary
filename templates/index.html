@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>News Summary</title>
+    <title>News Summarizer</title>
 </head>
 <body>
-    <h2>{{ title }}</h2>
-    <p><strong>By:</strong> {{ authors }}</p>
-    <p><strong>Date:</strong> {{ publish_date }}</p>
-    <img src="{{ top_image }}" alt="Top image" style="max-width:100%; height:auto;">
+    <h2>Summarize News Article</h2>
     
-    <div id="summary">
-        <strong>Summary:</strong><br>
-        {{ summary }}
-    </div>
-    <br>
-    <div id="sentiment">
-        <strong>Sentiment:</strong> {{ sentiment }}
-    </div>
+    <form method="POST" action="/">
+        <input type="text" name="url" placeholder="Enter news article URL" required style="width: 300px;">
+        <button type="submit">Summarize</button>
+    </form>
+
+    <hr>
+
+    <p><strong>By:</strong> {{ author }}</p>
+    <p><strong>Date:</strong> {{ publish_date }}</p>
+
+    {% if top_image %}
+        <img src="{{ top_image }}" alt="Top image" width="300">
+    {% endif %}
+
+    <p><strong>Summary:</strong> <span id="summary">{{ summary }}</span></p>
+    <p><strong>Sentiment:</strong> <span id="sentiment">{{ sentiment }}</span></p>
 </body>
 </html>
