@@ -1,33 +1,38 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template
 from newspaper import Article
 from textblob import TextBlob
 
+app = Flask(__name__)
+
 @app.route("/", methods=["GET", "POST"])
 def home():
-    summary = ""
-    sentiment = ""
-    author = ""
-    publish_date = ""
-    top_image = ""
-
     if request.method == "POST":
-        url = request.form["url"]
-        article = Article(url)
-        article.download()
-        article.parse()
-        article.nlp()
+        url = request.form.get("url")
 
-        summary = article.summary
-        author = ", ".join(article.authors)
-        publish_date = article.publish_date
-        top_image = article.top_image
-        sentiment_polarity = TextBlob(article.text).sentiment.polarity
-        sentiment = (
-            "Positive" if sentiment_polarity > 0 else
-            "Negative" if sentiment_polarity < 0 else
-            "Neutral"
-        )
+        if not url:
+            return render_template("index.html", error="Please enter a valid URL.")
 
-    return render_template("index.html", summary=summary, sentiment=sentiment,
-                           author=author, publish_date=publish_date,
-                           top_image=top_image)
+        try:
+            article = Article(url)
+            article.download()
+            article.parse()
+            article.nlp()
+            summary = article.summary
+
+            blob = TextBlob(article.text)
+            polarity = blob.sentiment.polarity
+
+            if polarity > 0:
+                sentiment = "Positive"
+            elif polarity < 0:
+                sentiment = "Negative"
+            else:
+                sentiment = "Neutral"
+
+            return render_template("index.html", title=article.title, summary=summary, sentiment=sentiment, url=url)
+
+        except Exception as e:
+            return render_template("index.html", error=f"Failed to process article: {str(e)}")
+
+    return render_template("index.html")
+
