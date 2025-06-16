@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Summary</title>
+</head>
+<body>
+    <h2>{{ title }}</h2>
+    <p><strong>By:</strong> {{ authors }}</p>
+    <p><strong>Date:</strong> {{ publish_date }}</p>
+    <img src="{{ top_image }}" alt="Top image" style="max-width:100%; height:auto;">
+    
+    <div id="summary">
+        <strong>Summary:</strong><br>
+        {{ summary }}
+    </div>
+    <br>
+    <div id="sentiment">
+        <strong>Sentiment:</strong> {{ sentiment }}
+    </div>
+</body>
+</html>

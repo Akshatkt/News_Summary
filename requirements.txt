@@ -1,0 +1,6 @@
+Flask
+nltk
+textblob
+newspaper3k
+validators
+requests
