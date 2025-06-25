@@ -2,6 +2,11 @@
 
 A Python-based project to summarize news articles. This repository provides a simple interface for users to input news content and receive concise summaries, leveraging modern Python libraries and possibly a web interface.
 
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-green?style=for-the-badge&logo=firefox-browser)](https://news-summary-d0be.onrender.com/)
+
+<!-- Existing content follows... -->
+
 ## Features
 
 - Summarize long news articles into concise summaries.
